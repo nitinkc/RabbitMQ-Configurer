@@ -39,4 +39,13 @@ public class QueueConfiguration {
         cachingConnectionFactory.setPassword("guest");
         return cachingConnectionFactory;
     }
+
+    // CHECK IF THERE IS ANOTHER WAY TO HAVE ALL THE ELEMENTS(exchange, queues etc) CREATED> WITHOUT THIS THE
+    // THE ELEMENTS ARE NOT CREATED.
+    @Bean
+    MessageListenerContainer messageListenerContainer() {
+        SimpleMessageListenerContainer simpleMessageListenerContainer = new SimpleMessageListenerContainer();
+        simpleMessageListenerContainer.setConnectionFactory(connectionFactory());
+        return simpleMessageListenerContainer;
+    }
 }

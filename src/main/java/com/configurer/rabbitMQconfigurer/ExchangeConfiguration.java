@@ -18,6 +18,13 @@ public class ExchangeConfiguration {
     private static final String EXCHANGE_NAME = "MyProgrammaticTopicExchange";
 
     @Bean
+    Exchange myExchange(){
+        return ExchangeBuilder.topicExchange(EXCHANGE_NAME)
+                .durable(true)
+                .build();
+    }
+
+    @Bean
     Exchange exampleEx(){
         return new TopicExchange("ExExchange");
     }
@@ -32,7 +39,7 @@ public class ExchangeConfiguration {
 
     @Bean
     Exchange newEx(){
-        return ExchangeBuilder.topicExchange("Example_topic_exchange")
+        return ExchangeBuilder.topicExchange("ztopic_exchange")
                 .autoDelete()
                 .durable(true)
                 .internal()
@@ -41,7 +48,7 @@ public class ExchangeConfiguration {
 
     @Bean
     Exchange newExFanout(){
-        return ExchangeBuilder.fanoutExchange("Example_fanout_exchange")
+        return ExchangeBuilder.fanoutExchange("zfanout_exchange")
                 .autoDelete()
                 .durable(false)
                 .internal()
@@ -50,17 +57,10 @@ public class ExchangeConfiguration {
 
     @Bean
     Exchange newExHEaders(){
-        return ExchangeBuilder.headersExchange("Example_headers_exchange")
+        return ExchangeBuilder.headersExchange("zheaders_exchange")
                 .autoDelete()
                 .durable(false)
                 .internal()
-                .build();
-    }
-
-    @Bean
-    Exchange myExchange(){
-        return ExchangeBuilder.topicExchange(EXCHANGE_NAME)
-                .durable(true)
                 .build();
     }
 }
